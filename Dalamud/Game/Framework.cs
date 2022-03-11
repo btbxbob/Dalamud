@@ -184,7 +184,9 @@ namespace Dalamud.Game
             // If this is the first time we are running this loop, we need to init Dalamud subsystems synchronously
             if (!this.tier2Initialized)
             {
+                Log.Information("Framework::tier 2 init started");
                 this.tier2Initialized = dalamud.LoadTier2();
+                Log.Information("Framework::tier 2 init done");
                 if (!this.tier2Initialized)
                     this.tierInitError = true;
 
@@ -194,7 +196,9 @@ namespace Dalamud.Game
             // Plugins expect the interface to be available and ready, so we need to wait with plugins until we have init'd ImGui
             if (!this.tier3Initialized && Service<InterfaceManager>.GetNullable()?.IsReady == true)
             {
+                Log.Information("Framework::tier 3 init started");
                 this.tier3Initialized = dalamud.LoadTier3();
+                Log.Information("Framework::tier 3 init done");
                 if (!this.tier3Initialized)
                     this.tierInitError = true;
 
